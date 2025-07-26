@@ -2,7 +2,7 @@
 
 | Product  | Price | Stock  |
 |----------|-------|--------|
-| Laptop   | $800  | 10     |
+| shebang   | #!/bin/bash  | This should be first line. You should inform linux server, how to  execute the script     |
 | Phone    | $500  | 15     |
 | Headset  | $50   | 30     |
 
