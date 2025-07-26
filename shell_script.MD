@@ -6,4 +6,5 @@
 | Comment    | #some message  | The line will not get executed | #This is first shell script |
 | To print  | echo    | To print something    | echo “Hello” |
 | Variables  | variable-name=vaule          | DRY – Don’t repeat yourself    | PERSON1=” Dasari”  $PERSON1|
-| execute a command   | variable-name=$(command)    | Shell script run the command inside $() and stores the output into the variable    | DATE=$(date)   $DATE |
+| Execute a command   | variable-name=$(command)    | Shell script run the command inside $() and stores the output into the variable    | DATE=$(date)   $DATE |
+| Command-line arguments  | variable-name=$1    | These are used to pass values from command line    | PERSION1=$1    sh filename.sh Dasari    $PERSION1  |
