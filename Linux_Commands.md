@@ -1,4 +1,4 @@
-#Linux Commands
+# Linux Commands
 ```
 1. ssh-keygen -f <file-name> (Generate public & private keys)
 2. Path to store Public & Private Keys - /home-directory/.ssh
@@ -59,6 +59,14 @@
     - tail -f access.log
     - tail -f error.log
     - Check Security Groups
-
+24. chmod (Permissions)
+    - chmod u+x <filename> (Execute permissions)
+    - chmod u-x <filename> (To remove execute permission)
+    - chmod ugo+r <filename> (For everyone)
+    - chmod +x <filename> (For everyone)
+    - chmod ugo+rwx <filename>
+    - Read (R)--> 4, Write (W)-->2, Execute (X)--> 1
+    - chmod 750 <filename>
+    - Note:: public key and private key should not have more than 600 (Only user should have read & write access)
 
 ```
