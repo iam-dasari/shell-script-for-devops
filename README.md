@@ -129,10 +129,10 @@ Common Search Criteria and Options:
 36. grep -c "WARNING" "$log_file"
 37. wc -c < "$log_file")
 38. sed -e 's/[]\/$*.^[]/\\&/g' <<< $3
-39. ping -c 1 "$server"
-40. systemctl is-active --quiet "$service_nam
-41. apt-get update && apt-get upgrade -y
-42. top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'
+39. ping -c 1 "$server" --> -c means count so only 1 request
+40. systemctl is-active --quiet "$service_nam --> Returns 0 for success and non-zero for failure
+41. apt-get update && apt-get upgrade -y --> packages updates and version upgrades
+42. top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'--> to get overall CPU usage. top -bn1--> Run top in batch mode for a specified number of iterations and redirect output to a file, 100 - $1: This performs a subtraction operation, subtracting the value of the first field from the number 100
 43. free | grep Mem | awk '{print $3/$2 * 100.0}' --> used to calculate and display the percentage of used physical memory (RAM). $2 means total memory and $3 means used memory
 44. useradd "$username" --> create a user
 45. usermod -s /bin/bash "$username" --> Changing the user's default shell 
