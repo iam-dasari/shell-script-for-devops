@@ -47,6 +47,22 @@
     - cut -d / -f 1  (-d means delimeter, -1f means 1st fragment, Use cut command, we have to calculate fragments manually )
 22. awk (to cut the string based on some delimiter but it’s automatic not manual and it is used to get the data  with column based)
     - awk -F “/” ‘{print $1F}’ ($NF means nth fragment or last fragment)
+23. When you run set -e in a Bash shell or script, you're enabling the errexit option, which means:
+set -e
+•	Bash will immediately exit if any command returns a non zero exit status, except in certain cases like command lists joined with && or ||, conditional parts of if, while, or until, and in all but the final element of a pipeline. 
+•	If an ERR trap is defined with trap, it will be executed before the shell exits.
+•	By default, Bash continues execution after a failing command—making it easy to miss errors in production scripts.
+•	set -e enforces a fail-fast behaviour, akin to exceptions in higher‑level languages, improving script reliability.
+Best practices
+Use a stricter mode:
+set -euo pipefail
+-u: treat unset variables as errors
+-o pipefail: ensure the entire pipeline fails if any command in it fails
+Add -E for better trap inheritance:
+set -eE
+trap 'echo "Error occurred"; cleanup' ERR
+-E: ensures your ERR trap is inherited in subshells and command substitutions
+
 ```
 ### Troubleshooting steps
 ```
@@ -149,4 +165,92 @@ DevOps Team
 - kill <pid>  - Ending the process means kill the process, you are requesting to end the process
 - kill -9 <pid> - You are forcing to end the process
 - top  - It will list all the processes running
+```
+### Package Management
+```
+Ubuntu  apt-get
+Centos  yum
+Aws linux 2  amazon-linux-extra and yum
+I want to install a package called git   (github repo: tf-docker-k8)
+$cat /etc/os-release (What is the distribution you are using)
+sudo amazon-linux-extras install epel -y
+yum install git -y
+yum list all – It will show you all packages including installed packages
+yum list all | wc -l
+yum list installed | wc -l
+yum list available | wc -l  All-installed
+yum remove git -y
+yum search git
+```
+### Service Management
+```
+0 to 65535 ports
+Whenever you start a service, it will get the port from (065535)
+Nginx – http/s server running on port no 80, it is a web server
+-	You should install nginx
+Root access
+amazon-linux-extras install nginx -y
+yum install nginx -y
+nginx packagestart then it will run
+systemctl start nginx
+systemctl status nginx
+systemctl enable nginx  if you restart server by default nginx will not run, so you have to enable first and then start again
+systemctl disable nginx
+systemctl stop nginx
+http://ip-address: 80
+cd /usr/share/nginx  default location when nginx related files are resided.
+/usr/share/nginx/html you keep .html,.css & JS files
+```
+### Network Management
+```
+netstat --> network statistics (You can check respected port is opened or not, what is PID)
+netstat -lt --> List the services
+netstat -ltn --> List the services with port
+netstat -lntp --> with PID
+ps -ef | grep nginx
+top --> Whether the system is exhausted or not
+free -m (RAM usage)
+df -hT (Hard Disk memory)
+telnet (amazon-linux-extras install telnet -y)
+telnet IP port
+If this is failed, you need to check security group (firewall)
+```
+### Linux File System
+```
+/ --> Linux start directory
+/boot --> When OS started Linux search for boot directory to start the server.  Based on the configuration in grub.cfg, server will get started
+/root --> it is the home folder of admin user i.e., root
+/dev (devices) --> all our hard disks, keyboards, speakers etc.,
+/etc --> extra configuration, configuration related to packages, services
+/home --> where all the users folder exists
+/lib or /lib64 --> all the libraries (dependencies) of the packages and commands
+/media --> cd or dvd will be mounted here
+/mnt (mount) --> it is used to mount the external hard disk or NFS
+/opt --> optional, third party softwares like tomcat, if we want to download and run manually it is always good to keep in /opt directory
+/proc --> process, all your running process info will be stored here. Once you stop the system everything will be deleted from this folder
+/run --> when your OS is loading, it need some temporary file system. It will use /run as filesystem. Once you stop the system everything will be deleted from this folder
+/bin --> binaries, like commands our regular users use
+/sbin --> system binaries, admin related commands
+/tmp --> just temp files. It is not important
+/usr --> user information
+/var --> variables, log files, messages
+
+inode --> humans remember names, computer can’t understand names, they only understand numbers. It is the pointer location of the filr/folder inside memory
+softlink/symbolic/symlink 
+echo “Hello” > hello
+cat hello
+ln -s hello hello-soft (-s means softlink)
+hello-soft/tmp (It refer the file in /tmp folder)
+hard linklike copying the file again but uses same inode
+ln /home/ec2-user/hello hello-hardlink
+ls -ltri (I meand inode)
+soft link vs hard link  same inode for hard link and different inodes for soft link
+rm -rf /home/ec2-user/hello
+softlink files will be removed but files exist for hard link that means softlink will not work, hard link can still have the data
+
+tar-->tar -x filename (-x means extract)
+crontab-->you need to monitor linux server all the time like memory, cpu resources. Instead of that write shell script and schedule it
+crontab -e (-e means edit)
+***** echo “Hello $date” >> /home/ec2-user/execution.log
+
 ```
