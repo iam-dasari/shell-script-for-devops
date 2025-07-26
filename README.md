@@ -117,17 +117,17 @@ Common Search Criteria and Options:
     3** --> redirection
     4** --> client side error, you are not giving proper URL
     5** --> server side error, there is something wrong inside server/code
-28. tar -czf "$backup_dir/backup_$timestamp.tar.gz" "$source_dir"
-29. mysqldump -u "$db_user" -p"$db_pass" "$db_name" | gzip > "$backup_dir/db_backup_$timestamp.sql.gz"
-30. kubectl set image deployment/nginx-deployment nginx=nginx:"$previous_version" --record
-31. df -hT | grep -vE 'tmfs|Filesystem'
-32. awk '{print $(NF-1)}
-33. sh mail.sh dasaridevops2025@gmail.com "High Disk Usage" "$message" "DEVOPS TEAM" "High Disk usage"
+28. tar -czf "$backup_dir/backup_$timestamp.tar.gz" "$source_dir" --> tar -czf means create .gz file
+29. mysqldump -u "$db_user" -p"$db_pass" "$db_name" | gzip > "$backup_dir/db_backup_$timestamp.sql.gz" --> The mysqldump command in Linux is a command-line utility used to create logical backups of MySQL databases. gzip is used to compress files. tar is for archive and gzip is for compress files
+30. kubectl set image deployment/nginx-deployment nginx=nginx:"$previous_version" --record --> kubectl set image is used for modifying container images within various Kubernetes resources. --record--> It records the executed command as an annotation (kubernetes.io/change-cause) within the Deployment's revision history. This provides an audit trail, making it easier to track changes and understand the cause of each revision when inspecting the rollout history using kubectl rollout history.
+31. df -hT | grep -vE 'tmfs|Filesystem' --> -h means human readable, T means type of file, -v means Find lines that do not match the pattern, E means finding the pattern in the text
+32. awk '{print $(NF-1)} --> print 2nd column from last column
+33. sh mail.sh dasaridevops2025@gmail.com "High Disk Usage" "$message" "DEVOPS TEAM" "High Disk usage" --> is used to call a script
 34. destination_server="user@hostname:/tmp/"
-    scp "$source_file" "$destination_server"
-35. git clone --mirror "$git_repo" "$backup_dir/shell-script-for-devops.git"
+    scp "$source_file" "$destination_server" --> is used to to transfer a file from local to EC2 instance
+35. git clone --mirror "$git_repo" "$backup_dir/shell-script-for-devops.git" --> The git clone --mirror command is used to create a bare mirror of a Git repository. This means it creates a local copy of the remote repository that includes all of its references (branches, tags, remote-tracking branches, notes, etc.) and configuration, but it does not create a working directory with editable files.
 36. grep -c "WARNING" "$log_file"
-37. wc -c < "$log_file")
+37. wc -c < "$log_file") --> The grep -c option in Linux is used to count the number of lines that match a specified pattern within a file or set of files. Instead of printing the matching lines themselves, grep -c outputs only a numerical count of how many lines contain the given pattern.
 38. sed -e 's/[]\/$*.^[]/\\&/g' <<< $3
 39. ping -c 1 "$server" --> -c means count so only 1 request
 40. systemctl is-active --quiet "$service_nam --> Returns 0 for success and non-zero for failure
