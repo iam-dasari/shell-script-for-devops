@@ -1,5 +1,8 @@
 ### Linux Commands
 ```
+< means in Linux input
+> means in Linux output/redirection
+
 1. ssh-keygen -f <file-name> (Generate public & private keys)
 2. Path to store Public & Private Keys - /home-directory/.ssh
 3. ssh -I test.pem ec2-user@public-ip-address (Connect to an EC2 instance)
@@ -62,6 +65,56 @@ Add -E for better trap inheritance:
 set -eE
 trap 'echo "Error occurred"; cleanup' ERR
 -E: ensures your ERR trap is inherited in subshells and command substitutions
+24. find <where-to-search> -name filename
+find / -name “hello”  / means everywhere
+	find . -name 'pattern' (Searching by Name)
+	find . -type f -name "*.txt" (Searching by type as file)
+	find . -type d -name "backup" ((Searching by type as file)
+	find . -iname "*.txt" (Case-insensitive search)
+	find ~/Documents -mtime -7 -iname "*.txt" (Find files modified in last 7 days)
+	find . -size +50M -size -100M (Based on size)
+	find . -type f -size 0 (Find empty files)
+Common Search Criteria and Options:
+•	By Name:
+•	-name "filename": Searches for files or directories matching the exact name (case-sensitive).
+•	-iname "filename": Searches for files or directories matching the name (case-insensitive).
+•	Wildcards like * (any sequence of characters) and ? (any single character) can be used with -name and -iname.
+•	By Type:
+•	-type f: Searches only for files.
+•	-type d: Searches only for directories.
+•	By Size:
+•	-size +1G: Searches for files larger than 1 Gigabyte.
+•	-size -1M: Searches for files smaller than 1 Megabyte.
+•	-size 50k: Searches for files exactly 50 Kilobytes in size.
+•	By Modification Time:
+•	-mtime +7: Searches for files modified more than 7 days ago.
+•	-mtime -7: Searches for files modified within the last 7 days.
+•	-mtime 7: Searches for files modified exactly 7 days ago.
+•	By Permissions:
+•	-perm 777: Searches for files with specific permissions (e.g., read, write, execute for all).
+•	Executing Commands on Found Files:
+•	-exec command {} \;: Executes a specified command on each found item. {} acts as a placeholder for the found item's path, and \; terminates the command.
+•	-exec command {} +: Executes a specified command on multiple found items at once, improving efficiency.
+25. sed editor (Streamline editor) 
+sed -e ‘1 a Good morning’ passwd (-e means adding, 1 means after 1st line, a means appends and passwd is filename)
+sed -e ‘1 i Good morning’ passwd (I means insert before line 1)
+it is a temporary editor not permanently, use -i for permanently changing instead of -e
+sed -e ‘s/<word-to-find>/<word-to-replace>/’ <file-name> - to replace (this one will replace the first occurrence)
+if you want all occurrences you need to use g
+sed -e ‘s/<word-to-find>/<word-to-replace>/g’ <file-name>
+sed -e ‘/<word-to-delete>/ d’ <file-name>
+Note: In Linux, $ will work in double quotes but not in single quotes
+26. less /var/log/messages
+shift+g  down
+gg  take up
+q  quit
+
+27. tail -f <log-file> - Running logs
+
+2**  success
+3**  redirection
+4**  client side error, you are not giving proper URL
+5**  server side error, there is something wrong inside server/code 
 
 ```
 ### Troubleshooting steps
@@ -252,5 +305,40 @@ tar-->tar -x filename (-x means extract)
 crontab-->you need to monitor linux server all the time like memory, cpu resources. Instead of that write shell script and schedule it
 crontab -e (-e means edit)
 ***** echo “Hello $date” >> /home/ec2-user/execution.log
+```
+### Volumes in Linux
+```
+-	By default, we can’t see the volume in linux server we need some configuration
+-   Attach EBS volume to EC2
+-	lsblk
+-	create file system from volume sudo mkfs -t xfs /dev/xvdf
+-	sudo yum install xfsprogs
+-	sudo mkdir /data
+-	sudo mount /dev/xvdf /data
+-	df -hT
+```
+### systemd service
+```
+/etc/systemd/system Linux looks for the services when it is starting
+Create a service /etc/systemd/system folder to manage it as native systemctl service.
+[Unit]
+Description = Catalogue Service
+[Service]
+User=roboshop
+Environment=MONGo=true
+Environment=MONGO_URL=”mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=catalogue
+[Install]
+WantedBy=multi-user.target
 
+systemctl daemon-reload
+systemctl enable catalogue
+systemctl start catalogue
+```
+### Install dependencies/Libraries
+```
+Maven --> pom.xml
+Nodejs/js --> package.json
+Python --> Requirements.txt
 ```
