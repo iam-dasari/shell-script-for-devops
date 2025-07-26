@@ -1,8 +1,8 @@
 ### Shell Script Concepts
 
-| Product  | Price | Stock  |
-|----------|-------|--------|
-| shebang   | #!/bin/bash  | This should be first line. You should inform linux server, how to  execute the script     |
+| Topic  | Syntax | Purpose  | Example  |
+|----------|-------|--------|--------|
+| shebang   | #!/bin/bash  | This should be first line. You should inform linux server, how to  execute the script     | sh filename.sh |
 | Phone    | $500  | 15     |
 | Headset  | $50   | 30     |
 
