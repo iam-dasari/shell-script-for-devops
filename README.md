@@ -116,7 +116,28 @@ Common Search Criteria and Options:
     2** --> success
     3** --> redirection
     4** --> client side error, you are not giving proper URL
-    5** --> server side error, there is something wrong inside server/code 
+    5** --> server side error, there is something wrong inside server/code
+28. tar -czf "$backup_dir/backup_$timestamp.tar.gz" "$source_dir"
+29. mysqldump -u "$db_user" -p"$db_pass" "$db_name" | gzip > "$backup_dir/db_backup_$timestamp.sql.gz"
+30. kubectl set image deployment/nginx-deployment nginx=nginx:"$previous_version" --record
+31. df -hT | grep -vE 'tmfs|Filesystem'
+32. awk '{print $(NF-1)}
+33. sh mail.sh dasaridevops2025@gmail.com "High Disk Usage" "$message" "DEVOPS TEAM" "High Disk usage"
+34. destination_server="user@hostname:/tmp/"
+    scp "$source_file" "$destination_server"
+35. git clone --mirror "$git_repo" "$backup_dir/shell-script-for-devops.git"
+36. grep -c "WARNING" "$log_file"
+37. wc -c < "$log_file")
+38. sed -e 's/[]\/$*.^[]/\\&/g' <<< $3
+39. ping -c 1 "$server"
+40. systemctl is-active --quiet "$service_nam
+41. apt-get update && apt-get upgrade -y
+42. top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'
+43. free | grep Mem | awk '{print $3/$2 * 100.0}'
+44. useradd "$username"
+45. usermod -s /bin/bash "$username"
+46. userdel "$username"
+47. awk '{print $1}' "$access_log" | sort | uniq -c | sort -nr | head -n 10
 ```
 ### Troubleshooting steps
 ```
