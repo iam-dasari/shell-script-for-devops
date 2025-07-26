@@ -1,4 +1,4 @@
-## Linux Commands
+### Linux Commands
 ```
 1. ssh-keygen -f <file-name> (Generate public & private keys)
 2. Path to store Public & Private Keys - /home-directory/.ssh
@@ -149,5 +149,4 @@ DevOps Team
 - kill <pid>  - Ending the process means kill the process, you are requesting to end the process
 - kill -9 <pid> - You are forcing to end the process
 - top  - It will list all the processes running
-
 ```
