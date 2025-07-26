@@ -133,11 +133,11 @@ Common Search Criteria and Options:
 40. systemctl is-active --quiet "$service_nam
 41. apt-get update && apt-get upgrade -y
 42. top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'
-43. free | grep Mem | awk '{print $3/$2 * 100.0}'
-44. useradd "$username"
-45. usermod -s /bin/bash "$username"
-46. userdel "$username"
-47. awk '{print $1}' "$access_log" | sort | uniq -c | sort -nr | head -n 10
+43. free | grep Mem | awk '{print $3/$2 * 100.0}' --> used to calculate and display the percentage of used physical memory (RAM). $2 means total memory and $3 means used memory
+44. useradd "$username" --> create a user
+45. usermod -s /bin/bash "$username" --> Changing the user's default shell 
+46. userdel "$username" --> Delete the user
+47. awk '{print $1}' "$access_log" | sort | uniq -c | sort -nr | head -n 10 (awk '{print $1}' "$access_log"--> 1st column output from access_log, sort-->Sort in ascending order, uniq -c--> remove duplicates, sort -nr-->sort in descending numerically, head -n 10--> 1st 10 lines)
 ```
 ### Troubleshooting steps
 ```
