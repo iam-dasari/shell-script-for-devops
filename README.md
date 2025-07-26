@@ -211,8 +211,8 @@ User is leaving organization
     - First you need to change his primary group to his own group.
       usermod -g dasari dasari
       id dasari
-    - We need to delete the user  userdel dasari
-    - Delete the group also  groupdel <group-name>
+    - We need to delete the user -->  userdel dasari
+    - Delete the group also --> groupdel <group-name>
     Note: you can delete the group only if it has no users, firt you should remove users from group and then delete
 ```
 ### Process Management
@@ -239,7 +239,7 @@ DevOps Team
 - ps -ef | grep java (How can you search for java process)
 - kill <pid>  - Ending the process means kill the process, you are requesting to end the process
 - kill -9 <pid> - You are forcing to end the process
-- top  - It will list all the processes running
+- top --> It will list all the processes running
 ```
 ### Package Management
 ```
