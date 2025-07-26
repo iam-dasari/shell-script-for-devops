@@ -321,18 +321,18 @@ crontab -e (-e means edit)
 ```
 /etc/systemd/system Linux looks for the services when it is starting
 Create a service /etc/systemd/system folder to manage it as native systemctl service.
-```
-[Unit]
-Description = Catalogue Service
-[Service]
-User=roboshop
-Environment=MONGo=true
-Environment=MONGO_URL=”mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue
-ExecStart=/bin/node /app/server.js
-SyslogIdentifier=catalogue
-[Install]
-WantedBy=multi-user.target
-```
+
+    [Unit]
+    Description = Catalogue Service
+    [Service]
+    User=roboshop
+    Environment=MONGo=true
+    Environment=MONGO_URL=”mongodb://<MONGODB-SERVER-IPADDRESS>:27017/catalogue
+    ExecStart=/bin/node /app/server.js
+    SyslogIdentifier=catalogue
+    [Install]
+    WantedBy=multi-user.target
+
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
