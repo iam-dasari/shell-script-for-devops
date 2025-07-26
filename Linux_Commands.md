@@ -60,7 +60,6 @@ In Linux
 
 Best practices
 ---------------
-
     - Use a stricter mode:
         set -euo pipefail
         -u: treat unset variables as errors
@@ -82,24 +81,24 @@ Best practices
 
 Common Search Criteria and Options:
 -------------------------------------
-By Name:
-    -name "filename": Searches for files or directories matching the exact name (case-sensitive).-iname "filename": Searches for files or directories matching the name (case-insensitive)Wildcards like * (any sequence of characters) and ? (any single character) can be used with -name and -iname.
-By Type:
-    -type f: Searches only for files.
-    -type d: Searches only for directories.
-By Size:
-    -size +1G: Searches for files larger than 1 Gigabyte.
-    -size -1M: Searches for files smaller than 1 Megabyte.
-    -size 50k: Searches for files exactly 50 Kilobytes in size.
-By Modification Time:
-    -mtime +7: Searches for files modified more than 7 days ago.
-    -mtime -7: Searches for files modified within the last 7 days.
-    -mtime 7: Searches for files modified exactly 7 days ago.
-By Permissions:
-    -perm 777: Searches for files with specific permissions (e.g., read, write, execute for all).
-Executing Commands on Found Files:
-    -exec command {} \;: Executes a specified command on each found item. {} acts as a placeholder for the found item's path, and \; terminates the command.
-    -exec command {} +: Executes a specified command on multiple found items at once, improving efficiency.
+    By Name:
+        -name "filename": Searches for files or directories matching the exact name (case-sensitive).-iname "filename": Searches for files or directories matching the name (case-insensitive)Wildcards like * (any sequence of characters) and ? (any single character) can be used with -name and -iname.
+    By Type:
+        -type f: Searches only for files.
+        -type d: Searches only for directories.
+    By Size:
+        -size +1G: Searches for files larger than 1 Gigabyte.
+        -size -1M: Searches for files smaller than 1 Megabyte.
+        -size 50k: Searches for files exactly 50 Kilobytes in size.
+    By Modification Time:
+        -mtime +7: Searches for files modified more than 7 days ago.
+        -mtime -7: Searches for files modified within the last 7 days.
+        -mtime 7: Searches for files modified exactly 7 days ago.
+    By Permissions:
+        -perm 777: Searches for files with specific permissions (e.g., read, write, execute for all).
+    Executing Commands on Found Files:
+        -exec command {} \;: Executes a specified command on each found item. {} acts as a placeholder for the found item's path, and \; terminates the command.
+        -exec command {} +: Executes a specified command on multiple found items at once, improving efficiency.
 25. sed editor (Streamline editor) 
     sed -e ‘1 a Good morning’ passwd (-e means adding, 1 means after 1st line, a means appends and passwd is filename)
     sed -e ‘1 i Good morning’ passwd (I means insert before line 1)
@@ -113,7 +112,6 @@ Executing Commands on Found Files:
     shift+g --> down
     gg --> take up
     q --> quit
-
 27. tail -f <log-file> - Running logs
     2** --> success
     3** --> redirection
