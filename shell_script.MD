@@ -1,4 +1,11 @@
 ### Shell Script Concepts
+
+| Product  | Price | Stock  |
+|----------|-------|--------|
+| Laptop   | $800  | 10     |
+| Phone    | $500  | 15     |
+| Headset  | $50   | 30     |
+
 ```
     | Header 1 | Header 2 | Header 3 |
     | :------- | :-------:| -------: |
