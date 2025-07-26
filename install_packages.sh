@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DATE=$(date +%F)
+DATE_STARTED=$(date)
 LOGSDIR=/tmp
 SCRIPT_NAME=$0
 LOGFILE=$LOGSDIR/$0-$DATE
@@ -11,6 +12,8 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
+
+echo "Script Started at $DATE_STARTED"
 
 if [ $USERID -ne 0 ]
 then
@@ -30,4 +33,6 @@ cp file1.txt file2.txt &>> $LOGFILE
 
 VALIDATE $? "Copying the contents of file1.txt to file2.txt"
 
+DATE_ENDED=$(date)
 
+echo "Script Started at $DATE_ENDED"
