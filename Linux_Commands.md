@@ -1,7 +1,8 @@
 ### Linux Commands
 ```
-< means in Linux input
-> means in Linux output/redirection
+In Linux
+    < means input
+    > means output/redirection
 
 1. ssh-keygen -f <file-name> (Generate public & private keys)
 2. Path to store Public & Private Keys - /home-directory/.ssh
@@ -51,71 +52,73 @@
 22. awk (to cut the string based on some delimiter but it’s automatic not manual and it is used to get the data  with column based)
     - awk -F “/” ‘{print $1F}’ ($NF means nth fragment or last fragment)
 23. When you run set -e in a Bash shell or script, you're enabling the errexit option, which means:
-set -e
-•	Bash will immediately exit if any command returns a non zero exit status, except in certain cases like command lists joined with && or ||, conditional parts of if, while, or until, and in all but the final element of a pipeline. 
-•	If an ERR trap is defined with trap, it will be executed before the shell exits.
-•	By default, Bash continues execution after a failing command—making it easy to miss errors in production scripts.
-•	set -e enforces a fail-fast behaviour, akin to exceptions in higher‑level languages, improving script reliability.
+    set -e
+    - Bash will immediately exit if any command returns a non zero exit status, except in certain cases like command lists joined with && or ||, conditional parts of if, while, or until, and in all but the final element of a pipeline. 
+    - If an ERR trap is defined with trap, it will be executed before the shell exits.
+    - By default, Bash continues execution after a failing command—making it easy to miss errors in production scripts.
+    - set -e enforces a fail-fast behaviour, akin to exceptions in higher‑level languages, improving script reliability.
+
 Best practices
-Use a stricter mode:
-set -euo pipefail
--u: treat unset variables as errors
--o pipefail: ensure the entire pipeline fails if any command in it fails
-Add -E for better trap inheritance:
-set -eE
-trap 'echo "Error occurred"; cleanup' ERR
--E: ensures your ERR trap is inherited in subshells and command substitutions
+---------------
+
+    - Use a stricter mode:
+        set -euo pipefail
+        -u: treat unset variables as errors
+        -o pipefail: ensure the entire pipeline fails if any command in it fails
+    - Add -E for better trap inheritance:
+        set -eE
+        trap 'echo "Error occurred"; cleanup' ERR
+        -E: ensures your ERR trap is inherited in subshells and command substitutions
 24. find <where-to-search> -name filename
-find / -name “hello”  / means everywhere
-	find . -name 'pattern' (Searching by Name)
-	find . -type f -name "*.txt" (Searching by type as file)
-	find . -type d -name "backup" ((Searching by type as file)
-	find . -iname "*.txt" (Case-insensitive search)
-	find ~/Documents -mtime -7 -iname "*.txt" (Find files modified in last 7 days)
-	find . -size +50M -size -100M (Based on size)
-	find . -type f -size 0 (Find empty files)
+    Ex: 
+    - find / -name “hello”  / means everywhere
+    - find . -name 'pattern' (Searching by Name)
+    - find . -type f -name "*.txt" (Searching by type as file)
+    - find . -type d -name "backup" ((Searching by type as file)
+    - find . -iname "*.txt" (Case-insensitive search)
+    - find ~/Documents -mtime -7 -iname "*.txt" (Find files modified in last 7 days)
+    - find . -size +50M -size -100M (Based on size)
+    - find . -type f -size 0 (Find empty files)
+
 Common Search Criteria and Options:
-•	By Name:
-•	-name "filename": Searches for files or directories matching the exact name (case-sensitive).
-•	-iname "filename": Searches for files or directories matching the name (case-insensitive).
-•	Wildcards like * (any sequence of characters) and ? (any single character) can be used with -name and -iname.
-•	By Type:
-•	-type f: Searches only for files.
-•	-type d: Searches only for directories.
-•	By Size:
-•	-size +1G: Searches for files larger than 1 Gigabyte.
-•	-size -1M: Searches for files smaller than 1 Megabyte.
-•	-size 50k: Searches for files exactly 50 Kilobytes in size.
-•	By Modification Time:
-•	-mtime +7: Searches for files modified more than 7 days ago.
-•	-mtime -7: Searches for files modified within the last 7 days.
-•	-mtime 7: Searches for files modified exactly 7 days ago.
-•	By Permissions:
-•	-perm 777: Searches for files with specific permissions (e.g., read, write, execute for all).
-•	Executing Commands on Found Files:
-•	-exec command {} \;: Executes a specified command on each found item. {} acts as a placeholder for the found item's path, and \; terminates the command.
-•	-exec command {} +: Executes a specified command on multiple found items at once, improving efficiency.
+-------------------------------------
+By Name:
+    -name "filename": Searches for files or directories matching the exact name (case-sensitive).-iname "filename": Searches for files or directories matching the name (case-insensitive)Wildcards like * (any sequence of characters) and ? (any single character) can be used with -name and -iname.
+By Type:
+    -type f: Searches only for files.
+    -type d: Searches only for directories.
+By Size:
+    -size +1G: Searches for files larger than 1 Gigabyte.
+    -size -1M: Searches for files smaller than 1 Megabyte.
+    -size 50k: Searches for files exactly 50 Kilobytes in size.
+By Modification Time:
+    -mtime +7: Searches for files modified more than 7 days ago.
+    -mtime -7: Searches for files modified within the last 7 days.
+    -mtime 7: Searches for files modified exactly 7 days ago.
+By Permissions:
+    -perm 777: Searches for files with specific permissions (e.g., read, write, execute for all).
+Executing Commands on Found Files:
+    -exec command {} \;: Executes a specified command on each found item. {} acts as a placeholder for the found item's path, and \; terminates the command.
+    -exec command {} +: Executes a specified command on multiple found items at once, improving efficiency.
 25. sed editor (Streamline editor) 
-sed -e ‘1 a Good morning’ passwd (-e means adding, 1 means after 1st line, a means appends and passwd is filename)
-sed -e ‘1 i Good morning’ passwd (I means insert before line 1)
-it is a temporary editor not permanently, use -i for permanently changing instead of -e
-sed -e ‘s/<word-to-find>/<word-to-replace>/’ <file-name> - to replace (this one will replace the first occurrence)
-if you want all occurrences you need to use g
-sed -e ‘s/<word-to-find>/<word-to-replace>/g’ <file-name>
-sed -e ‘/<word-to-delete>/ d’ <file-name>
-Note: In Linux, $ will work in double quotes but not in single quotes
+    sed -e ‘1 a Good morning’ passwd (-e means adding, 1 means after 1st line, a means appends and passwd is filename)
+    sed -e ‘1 i Good morning’ passwd (I means insert before line 1)
+    - it is a temporary editor not permanently, use -i for permanently changing instead of -e
+    sed -e ‘s/<word-to-find>/<word-to-replace>/’ <file-name> - to replace (this one will replace the first occurrence)
+    if you want all occurrences you need to use g
+    sed -e ‘s/<word-to-find>/<word-to-replace>/g’ <file-name>
+    sed -e ‘/<word-to-delete>/ d’ <file-name>
+    Note: In Linux, $ will work in double quotes but not in single quotes
 26. less /var/log/messages
-shift+g  down
-gg  take up
-q  quit
+    shift+g --> down
+    gg --> take up
+    q --> quit
 
 27. tail -f <log-file> - Running logs
-
-2**  success
-3**  redirection
-4**  client side error, you are not giving proper URL
-5**  server side error, there is something wrong inside server/code 
-
+    2** --> success
+    3** --> redirection
+    4** --> client side error, you are not giving proper URL
+    5** --> server side error, there is something wrong inside server/code 
 ```
 ### Troubleshooting steps
 ```
@@ -319,7 +322,7 @@ crontab -e (-e means edit)
 ```
 ### systemd service
 ```
-/etc/systemd/system Linux looks for the services when it is starting
+/etc/systemd/system --> Linux looks for the services when it is starting
 Create a service /etc/systemd/system folder to manage it as native systemctl service.
 
     [Unit]
